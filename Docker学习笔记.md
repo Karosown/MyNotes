@@ -308,7 +308,7 @@ docker build -f springboot_dockerfile -t app .
 docker run -id -p 9000:8080 app	#端口映射
 ```
 
-### tos7
+### Centos7
 
 ![image-20230119172148853](http://gd.7n.cdn.wzl1.top/typora/img/image-20230119172148853.png)
 
