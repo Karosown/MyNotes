@@ -159,3 +159,19 @@ public class Main {
 ## WorkQueues
 
 ![image-20230120182743025](http://gd.7n.cdn.wzl1.top/typora/img/image-20230120182743025.png)
+
+## Pub/Sub订阅模式
+
+![image-20230120204828087](http://gd.7n.cdn.wzl1.top/typora/img/image-20230120204828087.png)
+
+## Routing路由模式
+
+![image-20230120210416965](http://gd.7n.cdn.wzl1.top/typora/img/image-20230120210416965.png)
+
+### Topic通配符模式
+
+![image-20230120211014113](http://gd.7n.cdn.wzl1.top/typora/img/image-20230120211014113.png)
+
+# Spring整合RabbitMQ
+
+[(77条消息) SpringBoot整合RabbitMQ超级详细教程_adobehu的博客-CSDN博客_springboot rabbitmq](https://blog.csdn.net/huzecom/article/details/103578310)
