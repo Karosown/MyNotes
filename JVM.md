@@ -66,3 +66,16 @@ Class文件中除了有类的版本、字段、方法、接口等描述信息外
 
 RCP相对于Class文件常量池的另外一个重要特征：**动态性**
 
+Java并不要求常量一定要在编译器才能产生，也就是说并非预置入Class文件中的常量池的内容才能进入方法区运行常量池，运行期间也可以将新的常量放入池中，比如String::inter
+
+> :tada:String::inter()
+>
+> ![image-20230122235442146](http://gd.7n.cdn.wzl1.top/typora/img/image-20230122235442146.png)
+>
+> 会在常量池中寻找字符串
+
+### 直接内存
+
+直接内存（Direct Memory）并不是虚拟机运行时数据区的一部分，也不是《JVM》规范中定义的内存区域。
+
+在JDK 1.4中新加入了NIO类，引入了一种基于通道（Channel）与缓冲区（Buffer）的I/O方式，可以使用Native函数库直接分配堆外内存，然后通过一个存储在Java堆里面的DirectByteBuffer对象作为这块内存的引用操作，避免了在Java Heap和Native Heap中来回复制数据
