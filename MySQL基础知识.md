@@ -46,13 +46,13 @@ mysql -u root -p
 
 **使用SQL语言操作，标准统一，使用方便**
 
-![image-20220514001240117](C:\Users\30398\AppData\Roaming\Typora\typora-user-images\image-20220514001240117.png)
+![image-20220514001240117](http://gd.7n.cdn.wzl1.top/typora/img/image-20220514001240117.png)
 
 > 个人觉得就是由链表写的，有点链式前向星的感觉
 
 #### 2.数据模型
 
-![image-20220514001555923](C:\Users\30398\AppData\Roaming\Typora\typora-user-images\image-20220514001555923.png)
+![image-20220514001555923](http://gd.7n.cdn.wzl1.top/typora/img/image-20220514014445591.png)
 
 DBMS 数据库管理系统
 
@@ -141,7 +141,7 @@ CREATE TABLE 表名(
 
 > 表操作创建练习
 
-![image-20220514010306723](G:\TY\数据库\image-20220514010306723.png)
+![image-20220514010306723](http://gd.7n.cdn.wzl1.top/typora/img/image-20220514010306723.png)
 
 ```sql
 create table user_message(
@@ -166,21 +166,21 @@ create table user_message(
 
 ​				数据类型较多，主要分为三类：数值类型 字符串类型 日期时间类型	
 
-![image-20220514013734683](C:\Users\30398\AppData\Roaming\Typora\typora-user-images\image-20220514013734683.png)**DECIMAL (精度：长度 ，标度：小数位数)**
+![image-20220514013734683](http://gd.7n.cdn.wzl1.top/typora/img/image-20220514013734683.png)**DECIMAL (精度：长度 ，标度：小数位数)**
 
 **double(M,D)**
 
-![image-20220514013813930](C:\Users\30398\AppData\Roaming\Typora\typora-user-images\image-20220514013813930.png)
+![image-20220514013813930](http://gd.7n.cdn.wzl1.top/typora/img/image-20220514001555923.png)
 
 > BLOB 二进制数据T
 >
 > EXT 文本数据
 
-![image-20220514014225708](C:\Users\30398\AppData\Roaming\Typora\typora-user-images\image-20220514014225708.png)
+![image-20220514014225708](http://gd.7n.cdn.wzl1.top/typora/img/image-20220514013813930.png)
 
 > 小案例
 
-![image-20220514014445591](C:\Users\30398\AppData\Roaming\Typora\typora-user-images\image-20220514014445591.png)
+![image-20220514014445591](http://gd.7n.cdn.wzl1.top/typora/img/image-20220514170406880.png)
 
 ```sql
 create table user_msg(
@@ -294,7 +294,7 @@ UPDATE 表名 SET 字段名=值,字段名=值,...[WHERE 条件]
 
 > 在这里说一下set
 >
-> ![image-20220514170406880](G:\TY\数据库\image-20220514170406880.png)
+> ![image-20220514170406880](http://gd.7n.cdn.wzl1.top/typora/img/image-20220514014225708.png)
 >
 > 像一个表，也可以说是一个set
 
@@ -413,7 +413,7 @@ SELECT 字段列表 FROM 表名 WHERE 条件列表
 
 ###### 2.条件
 
-![image-20220516003851409](G:\TY\数据库\image-20220516003851409.png)
+![image-20220516003851409](http://gd.7n.cdn.wzl1.top/typora/img/image-20220516003851409.png)
 
 ##### 聚合函数 count max min
 
@@ -503,7 +503,7 @@ SELECT 字段列表 FROM 表明 LIMIT 起始索引,查询记录数;
 
 ###### DPL执行顺序
 
-![image-20220516012146662](G:\TY\数据库\image-20220516012146662.png)
+![image-20220516012146662](http://gd.7n.cdn.wzl1.top/typora/img/image-20220516012146662.png)
 
 #### DCL - 数据控制语言
 
@@ -561,7 +561,7 @@ DROP USER '用户名'@'主机名';
   关系：一个部门对应多个员工，一个员工对应一个部门
   实现：在多的一方建立外键，指向一的一方
 
-  ![image-20220603160823587](G:\TY\MySQL总览\image-20220603160823587.png)
+  ![image-20220603160823587](http://gd.7n.cdn.wzl1.top/typora/img/image-20220603160823587.png)
 
 - #### 多对多
 
@@ -571,7 +571,7 @@ DROP USER '用户名'@'主机名';
 
   实现：建立第三张中间表，中间至少包含两个外键，分别管理额两方主键
 
-  ![image-20220603161340809](G:\TY\MySQL总览\image-20220603161340809.png)
+  ![image-20220603161340809](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605131939350.png)
 
 - #### 一对一
 
@@ -782,7 +782,7 @@ case [expr] when [v1] then [res1] ...else [default] end
 
 外键用来然两张表的数据之间建立连接，从而保证数据的一致性和完整性
 
-![image-20220529010746860](G:\TY\MySQL总览\image-20220529010746860.png)**注意：上述两张表，尽在逻辑层面有关系，但在数据库层面，并未建立外键关联，所以无法保证数据的一致性和完整性**
+![image-20220529010746860](http://gd.7n.cdn.wzl1.top/typora/img/image-20220603161340809.png)**注意：上述两张表，尽在逻辑层面有关系，但在数据库层面，并未建立外键关联，所以无法保证数据的一致性和完整性**
 
 ### 语法
 
@@ -834,7 +834,7 @@ alter table 表明 add constraint 外键名称 foreign key (外键字段) refere
 
 **事务**是一组操作的集合，它是一个不可分割的工作单位，事务会把所有的操作作为一个整体一起向系统提交或撤销操作请求，即这些操作**要么同时成功，要么同时失败**
 
-![image-20220605121258296](G:\TY\MySQL总览\image-20220605121258296.png)
+![image-20220605121258296](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605132102627.png)
 
 默认MySQL的事务时自动提交的，也就是说，当执行一条DML语句，MySQL会立即隐式的提交事务。
 
@@ -911,7 +911,7 @@ alter table 表明 add constraint 外键名称 foreign key (外键字段) refere
 
   事务时不可分割的最小操作单元，要么全部成功，要么全部失败。
 
-  ![image-20220605131939350](G:\TY\MySQL总览\image-20220605131939350.png)
+  ![image-20220605131939350](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605121258296.png)
 
 - 一致性（Consistency）：
 
@@ -923,25 +923,25 @@ alter table 表明 add constraint 外键名称 foreign key (外键字段) refere
 
   数据库系统提供的**隔离机制**，保证事务在不受外部并发操作影响的独立环境下运行。
 
-  ![image-20220605132102627](G:\TY\MySQL总览\image-20220605132102627.png)
+  ![image-20220605132102627](http://gd.7n.cdn.wzl1.top/typora/img/image-20220529010746860.png)
 
 - 持久性（Durability）:
 
   事务一旦提交或回滚，它对数据库中的数据的改变就是永久的。
 
-![image-20220605132145051](G:\TY\MySQL总览\image-20220605132145051.png)
+![image-20220605132145051](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605132248778.png)
 
 > 数据库中的数据是存储到磁盘中的
 >
-> ![image-20220605132248778](G:\TY\MySQL总览\image-20220605132248778.png)
+> ![image-20220605132248778](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605132145051.png)
 
 ## 并发事务问题
 
 | 问题       | 描述                                                         |
 | ---------- | ------------------------------------------------------------ |
-| 脏读       | 一个事务读到另外一个事务还没提交的数据。![image-20220605132812051](G:\TY\MySQL总览\image-20220605132812051.png) |
-| 不可重复度 | 一个事务先后读取同一条记录，但两次读取的数据不同，称之为不可重复读。![image-20220605133624493](G:\TY\MySQL总览\image-20220605133624493.png) |
-| 幻读       | 一个事务按照条件查询数据时，没有对应的数据行，但是在插入数据时，又发现这行数据已经纯在，好像出现了“幻影”。<br />MySQL官方：只要在一个事务中，第二次select多出了row。![image-20220605133928564](G:\TY\MySQL总览\image-20220605133928564.png) |
+| 脏读       | 一个事务读到另外一个事务还没提交的数据。![image-20220605132812051](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605132812051.png) |
+| 不可重复度 | 一个事务先后读取同一条记录，但两次读取的数据不同，称之为不可重复读。![image-20220605133624493](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605133624493.png) |
+| 幻读       | 一个事务按照条件查询数据时，没有对应的数据行，但是在插入数据时，又发现这行数据已经纯在，好像出现了“幻影”。<br />MySQL官方：只要在一个事务中，第二次select多出了row。![image-20220605133928564](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605133928564.png) |
 
 ## 事务隔离界别
 
@@ -962,13 +962,13 @@ set [session(会话级别)|global] transaction isolation level [read uncommited 
 
 ### 脏读
 
-![image-20220605145221482](G:\TY\MySQL总览\image-20220605145221482.png)
+![image-20220605145221482](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605151235942.png)
 
-![image-20220605145758975](G:\TY\MySQL总览\image-20220605145758975.png)
+![image-20220605145758975](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605161500134.png)
 
-### 不可重复读![image-20220605150941475](G:\TY\MySQL总览\image-20220605150941475.png)
+### 不可重复读![image-20220605150941475](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605163705654.png)
 
-![image-20220605151235942](G:\TY\MySQL总览\image-20220605151235942.png)
+![image-20220605151235942](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605150941475.png)
 
 不可重复读，每次都是从数据库中读，如果时read uncommited则是在最近修改的事务中读
 
@@ -976,7 +976,7 @@ set [session(会话级别)|global] transaction isolation level [read uncommited 
 >
 > **脏读**读取到其他表还未提交时的修改，也就是说，当我们设置一个会话窗为read uncommited的时候，我们可以读取到其他会话窗上最新执行指令后的数据（不管是否commit），即**我们在read uncommited下的修改是对当前的备份表进行修改，读取时在其他事务中最新更新的表中进行读取**，也就是读取**别人的备份**
 >
-> ![image-20220605161500134](G:\TY\MySQL总览\image-20220605161500134.png)
+> ![image-20220605161500134](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605145758975.png)
 >
 > **不可重复读**只会读取到它当前事务那时的数据，相当于是所有操作都是对于**私人备份**的。
 >
@@ -989,7 +989,7 @@ set [session(会话级别)|global] transaction isolation level [read uncommited 
 
 **repeat read**
 
-![image-20220605163705654](G:\TY\MySQL总览\image-20220605163705654.png)
+![image-20220605163705654](http://gd.7n.cdn.wzl1.top/typora/img/image-20220605145221482.png)
 
 但是这样子会出现**幻读**，也就是说，如果我们在A中执行insert语句，那B中select时，会显示的是备份表，如果在B中insert相同内容时，会提示已存在。
 

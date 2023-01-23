@@ -4,9 +4,9 @@
 
 - SpringMVC技术与Severlet技术功能等同，均属于Web层开发技术
 
-![image-20220711001301802](C:\Users\30398\AppData\Roaming\Typora\typora-user-images\image-20220711001301802.png)
+![image-20220711001301802](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711013423598.png)
 
-![image-20220711001312582](C:\Users\30398\AppData\Roaming\Typora\typora-user-images\image-20220711001312582.png)
+![image-20220711001312582](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711001301802.png)
 
 - SpringMVC是一种基于Java实现MVC模型的轻量级Web框架
 - 优点
@@ -80,20 +80,20 @@
    }
    ```
 
-![image-20220711013407209](G:\TY\SpringMVC\image-20220711013407209.png)
+![image-20220711013407209](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711013407209.png)
 
-![image-20220711013423598](G:\TY\SpringMVC\image-20220711013423598.png)
+![image-20220711013423598](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711001312582.png)
 
-![image-20220711014000612](G:\TY\SpringMVC\image-20220711014000612.png)
+![image-20220711014000612](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711013515315.png)
 
 ## SpringMVC入门程序开发总结 1+N
 
-![image-20220711013515315](G:\TY\SpringMVC\image-20220711013515315.png)
+![image-20220711013515315](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711014851292.png)
 
 ## 入门案例工作流程分析
 
 - 启动服务器初始化过程
-  ![](G:\TY\SpringMVC\image-20220711014851292.png)<img src="G:\TY\SpringMVC\image-20220711015112651.png" alt="image-20220711015112651" style="zoom:50%;" />
+  ![](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714134442890.png)<img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20220711015112651.png" alt="image-20220711015112651" style="zoom:50%;" />
   1. 服务启动，执行ServletContainersInitConfig类，初始化Web容器
   2. 执行createServletApplicationContext方法，创建了WebApplicationContext对象
   3. 加载SpringＭvcConfig
@@ -127,13 +127,13 @@
   - 方式二：Spring加载的bean设定扫描范围为精准范围，例如service包、dao包等
   - 方式三：不区分Spring和SpringMVC的环境，加载到同一个环境中
 
-![image-20220711024022425](G:\TY\SpringMVC\image-20220711024022425.png)
+![image-20220711024022425](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711051057407.png)
 
-![image-20220711024042635](G:\TY\SpringMVC\image-20220711024042635.png)
+![image-20220711024042635](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714135948245.png)
 
 简化开发
 
-![image-20220711024343231](G:\TY\SpringMVC\image-20220711024343231.png)
+![image-20220711024343231](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711024022425.png)
 
 # PostMan
 
@@ -191,13 +191,13 @@
 
 由于引用类型会造对象，所以接口无法直接传参进去，加个注解RequestParam，那最后使用的就只是传进来的数据
 
-![image-20220714134442890](G:\TY\SpringMVC\image-20220714134442890.png)
+![image-20220714134442890](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714140151742.png)
 
 ## 请求参数（传递Json数据）
 
 ### 导入坐标
 
-![image-20220711051057407](G:\TY\SpringMVC\image-20220711051057407.png)
+![image-20220711051057407](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711024343231.png)
 
 ### 开启Json转对象功能
 
@@ -205,21 +205,21 @@
 
 ### @RequestParam
 
-![image-20220714140151742](G:\TY\SpringMVC\image-20220714140151742.png)
+![image-20220714140151742](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714140058909.png)
 
 ### 使用@RequestBody
 
 因为Json数据是在请求体中，而Param属于表单
 
-![image-20220711052015427](G:\TY\SpringMVC\image-20220711052015427.png)
+![image-20220711052015427](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711052015427.png)
 
 ### @RequestHeader
 
-![image-20220714135948245](G:\TY\SpringMVC\image-20220714135948245.png)
+![image-20220714135948245](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711024042635.png)
 
 ### @ Value
 
-![image-20220714140058909](G:\TY\SpringMVC\image-20220714140058909.png)
+![image-20220714140058909](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711053502854.png)
 
 ## 日期类型传递
 
@@ -231,7 +231,7 @@
 
 @DateTimeFormat(pattern = "yyy-MM-dd") 形参
 
-![image-20220711052625590](G:\TY\SpringMVC\image-20220711052625590.png)
+![image-20220711052625590](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711053438250.png)
 
 ### 类型转换器
 
@@ -245,33 +245,33 @@ RequestMapping可以返回文本 文件 字符串
 
 ## @ResponseBody
 
-![image-20220711053438250](G:\TY\SpringMVC\image-20220711053438250.png)
+![image-20220711053438250](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711052625590.png)
 
 ## HttpMessageConverter接口（类型转换器）
 
-![image-20220711053502854](G:\TY\SpringMVC\image-20220711053502854.png)
+![image-20220711053502854](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714135727013.png)
 
-![image-20220711053608185](G:\TY\SpringMVC\image-20220711053608185.png)
+![image-20220711053608185](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714141544648.png)
 
 # Ant风格路径
 
-![image-20220714135727013](G:\TY\SpringMVC\image-20220714135727013.png)
+![image-20220714135727013](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711053608185.png)
 
 # 页面转发与@RequestAttribute
 
-![image-20220714140823962](G:\TY\SpringMVC\image-20220714140823962.png)
+![image-20220714140823962](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714141437186.png)
 
 # 页面重定向
 
-![image-20220813174007948](G:/TY/SpringMVC/image-20220813174007948.png)
+![image-20220813174007948](http://gd.7n.cdn.wzl1.top/typora/img/image-20220813174007948.png)
 
 # @MatreixVariable
 
 SpringBoot默认禁用了该功能，需手动开启
 
-![image-20220714141437186](G:\TY\SpringMVC\image-20220714141437186.png)
+![image-20220714141437186](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714134857905.png)
 
-![image-20220714141544648](G:\TY\SpringMVC\image-20220714141544648.png)
+![image-20220714141544648](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711131214877.png)
 
 # REST风格
 
@@ -292,31 +292,31 @@ SpringBoot默认禁用了该功能，需手动开启
   - http://localhost/users/1 查询指定用户信息 GET
   - http://localhost/users 添加用户信息 POST
   - http://localhost/users 修改用户信息 PUT
-  - http://localhost/users/1 删除用户信息 DELETE![image-20220711131214877](G:\TY\SpringMVC\image-20220711131214877.png)
+  - http://localhost/users/1 删除用户信息 DELETE![image-20220711131214877](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714140823962.png)
 - 根据REST风格对资源进行访问称为RESTful
 
 ## RESTful入门案例
 
 给Request设置一个method = RequestMethod.XXX
 
-![image-20220711134657831](G:\TY\SpringMVC\image-20220711134657831.png)
+![image-20220711134657831](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714135531950.png)
 
-![image-20220711134937339](G:\TY\SpringMVC\image-20220711134937339.png)  
+![image-20220711134937339](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711134657831.png)  
 
-![image-20220714134857905](G:\TY\SpringMVC\image-20220714134857905.png)![image-20220714135531950](G:\TY\SpringMVC\image-20220714135531950.png)
+![image-20220714134857905](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711134937339.png)![image-20220714135531950](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711135230028.png)
 
 ### 步骤：
 
 1. 设定HTTP请求动作（动词）
-   ![  ](G:\TY\SpringMVC\image-20220711135149502.png)
+   ![  ](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711135149502.png)
 2. 设定请求参数（路径变量）
-   ![image-20220711135230028](G:\TY\SpringMVC\image-20220711135230028.png)
+   ![image-20220711135230028](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711135323775.png)
 
-![image-20220711135323775](G:\TY\SpringMVC\image-20220711135323775.png)
+![image-20220711135323775](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714130814181.png)
 
 ### 形参注解的区别
 
-![image-20220711135416017](G:\TY\SpringMVC\image-20220711135416017.png)
+![image-20220711135416017](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711135416017.png)
 
 ## REST快速开发
 
@@ -324,7 +324,7 @@ SpringBoot默认禁用了该功能，需手动开启
 
 ### @RequestMapping设置POST请求使用PostMapping替代，如果设置ID加值即可
 
-![image-20220711140041207](G:\TY\SpringMVC\image-20220711140041207.png)
+![image-20220711140041207](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714130904490.png)
 
 ## 案例：基于RESTFUL页面数据交互
 
@@ -338,26 +338,26 @@ SpringBoot默认禁用了该功能，需手动开启
 
 # 拦截器
 
-![image-20220714130814181](G:\TY\SpringMVC\image-20220714130814181.png)
+![image-20220714130814181](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714130753395.png)
 
-![image-20220714130904490](G:\TY\SpringMVC\image-20220714130904490.png)
+![image-20220714130904490](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711140041207.png)
 
-![image-20220714130753395](G:\TY\SpringMVC\image-20220714130753395.png)
+![image-20220714130753395](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714132024163.png)
 
-![image-20220714132015698](G:\TY\SpringMVC\image-20220714132015698.png)
+![image-20220714132015698](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714132015698.png)
 
-![image-20220714132024163](G:\TY\SpringMVC\image-20220714132024163.png)
+![image-20220714132024163](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714132042768.png)
 
-![image-20220714132042768](G:\TY\SpringMVC\image-20220714132042768.png)![image-20220714132244383](G:\TY\SpringMVC\image-20220714132244383.png)
+![image-20220714132042768](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714132321527.png)![image-20220714132244383](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714132244383.png)
 
-![image-20220714132321527](G:\TY\SpringMVC\image-20220714132321527.png)
+![image-20220714132321527](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714133222490.png)
 
-![image-20220714133213843](G:\TY\SpringMVC\image-20220714133213843.png)
+![image-20220714133213843](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714133213843.png)
 
-![image-20220714133222490](G:\TY\SpringMVC\image-20220714133222490.png  )
+![image-20220714133222490](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714133249378.png  )
 
-![  ](G:\TY\SpringMVC\image-20220714133249378.png)
+![  ](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714133317964.png)
 
-![image-20220714133317964](G:\TY\SpringMVC\image-20220714133317964.png)
+![image-20220714133317964](http://gd.7n.cdn.wzl1.top/typora/img/image-20220714134155016.png)
 
-![image-20220714134155016](G:\TY\SpringMVC\image-20220714134155016.png)
+![image-20220714134155016](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711014000612.png)
