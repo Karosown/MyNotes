@@ -1,6 +1,6 @@
 # MyBatis
 
-![image-20220710184234987](C:\Users\30398\AppData\Roaming\Typora\typora-user-images\image-20220710184234987.png)
+![image-20220710184234987](http://gd.7n.cdn.wzl1.top/typora/img/image-20220710185324288.png)
 
 ## 持久层：
 
@@ -21,13 +21,13 @@ MyBatis免除了几乎所有的Jdbc代码，以及色湖之参数和获取结果
 # 快速入门
 
 1. 创建User表，添加数据
-   <img src="G:\TY\MyBatis\image-20220710185324288.png" alt="image-20220710185324288" style="zoom: 80%;" />
+   <img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20220710185432419.png" alt="image-20220710185324288" style="zoom: 80%;" />
 2. 创建模块，导入坐标
-   ![image-20220710185432419](G:\TY\MyBatis\image-20220710185432419.png)
+   ![image-20220710185432419](http://gd.7n.cdn.wzl1.top/typora/img/image-20220710184234987.png)
    MySQL驱动
-3. 编写MyBatis核心配置文件 --> 替换连接信息 解决硬编码问题  ![image-20220710185646022](G:\TY\MyBatis\image-20220710185646022.png)
+3. 编写MyBatis核心配置文件 --> 替换连接信息 解决硬编码问题  ![image-20220710185646022](http://gd.7n.cdn.wzl1.top/typora/img/image-20220710185809328.png)
 4. 编写SQL映射文件 --> 同一个管理SQL语句，解决硬编码问题
-   ![image-20220710185809328](G:\TY\MyBatis\image-20220710185809328.png)
+   ![image-20220710185809328](http://gd.7n.cdn.wzl1.top/typora/img/image-20220720041136663.png)
 5. 编码
    1. 定义PO JO类
    2. 加载核心配置文件 获取SqlSesionFactory对象
@@ -40,11 +40,11 @@ MyBatis免除了几乎所有的Jdbc代码，以及色湖之参数和获取结果
 
 # Mybatis的映射文件
 
-![image-20220716042023090](G:/TY/MyBatis/image-20220716042023090.png)
+![image-20220716042023090](http://gd.7n.cdn.wzl1.top/typora/img/image-20220716042023090.png)
 
-![image-20220711165716968](G:\TY\MyBatis\image-20220711165716968.png)
+![image-20220711165716968](http://gd.7n.cdn.wzl1.top/typora/img/image-20220710185646022.png)
 
-![image-20220711165835393](G:\TY\MyBatis\image-20220711165835393.png)
+![image-20220711165835393](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711165716968.png)
 
 #  启动类
 
@@ -68,7 +68,7 @@ MyBatis免除了几乎所有的Jdbc代码，以及色湖之参数和获取结果
 
 <properties>设置其他文件的变量
 
-![image-20220720041136663](G:/TY/MyBatis/image-20220720041136663.png)
+![image-20220720041136663](http://gd.7n.cdn.wzl1.top/typora/img/image-20220721003050032.png)
 
 # 获取参数的两种方式以及各种情况
 
@@ -89,14 +89,14 @@ MyBatis获取参数值的各种情况：
 
   此时MyBatis会将这些参数放在一个map集合中，以两种方式进行存储a>以arg0, arg1...为键，以参数为值
   b>以param1 , param2...为键，以参数为值
-  因此只需要通过#{}和\${}以键的方式访问值即可，但是需要注意\${}的单引号问题![image-20220721003010562](G:/TY/MyBatis/image-20220721003010562.png)![image-20220721003050032](G:/TY/MyBatis/image-20220721003050032.png)![image-20220721003319626](G:/TY/MyBatis/image-20220721003319626.png)
+  因此只需要通过#{}和\${}以键的方式访问值即可，但是需要注意\${}的单引号问题![image-20220721003010562](http://gd.7n.cdn.wzl1.top/typora/img/image-20220711165835393.png)![image-20220721003050032](http://gd.7n.cdn.wzl1.top/typora/img/image-20220721003319626.png)![image-20220721003319626](http://gd.7n.cdn.wzl1.top/typora/img/image-20220721003010562.png)
 
 - 也可以直接传入一个map
   只需要通过#{}和鲁以键的方式访问值即可，但是需要注意$的单引号问题
 
 - 传入实例对象
 
-  只需要通过#秘鲁以属性的方式访问属性值即可，但是需要注意$的单引号问题![image-20220721041047023](G:/TY/MyBatis/image-20220721041047023.png)
+  只需要通过#秘鲁以属性的方式访问属性值即可，但是需要注意$的单引号问题![image-20220721041047023](http://gd.7n.cdn.wzl1.top/typora/img/image-20220723223536105.png)
 
 - 使用@Param
              此时MyBatis会将这些参数放在一个map集合中，以两种方式进行存储
@@ -106,17 +106,17 @@ MyBatis获取参数值的各种情况：
 
 # MyBatis的各种查询功能
 
-![image-20220723205006416](G:/TY/MyBatis/image-20220723205006416.png)
+![image-20220723205006416](http://gd.7n.cdn.wzl1.top/typora/img/image-20220723223717440.png)
 
 ## 默认类型别名
 
-![image-20220723223536105](G:/TY/MyBatis/image-20220723223536105.png)
+![image-20220723223536105](http://gd.7n.cdn.wzl1.top/typora/img/image-20220723222733694.png)
 
-![image-20220723222733694](G:/TY/MyBatis/image-20220723222733694.png)
+![image-20220723222733694](http://gd.7n.cdn.wzl1.top/typora/img/image-20220723205006416.png)
 
 ## Map
 
-- 以字段为键，以值为值![image-20220723223717440](G:/TY/MyBatis/image-20220723223717440.png)
+- 以字段为键，以值为值![image-20220723223717440](http://gd.7n.cdn.wzl1.top/typora/img/image-20220721041047023.png)
 - 可以在Mapper接口的方法上添加@MapKey注解
 
 # MyBatis处理模糊查询
