@@ -86,7 +86,9 @@ Java并不要求常量一定要在编译器才能产生，也就是说并非预�
 
 当虚拟机遇见一条字节码new指令，首先会检查这个指令的参数是否能在常量池中定位到一个类的符号引用，并且检查这个符号引用的类是否已被加载、解析、初始化过。如果没有，那必须先执行相应的类加载过程。
 
-![HotSpotCreateObject](http://gd.7n.cdn.wzl1.top/typora/img/HotSpotCreateObject.png?now)
+![HotSpotCreateObject](http://gd.7n.cdn.wzl1.top/typora/img/HotSpotCreateObject.png?dNow)
+
+#### HotSpot解释器代码片段
 
 ```c++
 // 确保常量池中存放的是已解释的类  
