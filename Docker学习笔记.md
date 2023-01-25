@@ -139,7 +139,7 @@ docker pull mysql:5.6
 mkdir ~/mysql
 cd ~/mysql
 docker run -id \
--p 3307:3306 \
+-p 3306:3306 \
 --name=c_mysql \
 -v $PWD/conf:/etc/mysql/conf.d \
 -v $PWD/logs:/logs \
