@@ -82,3 +82,29 @@ http://服务器IP:8848/nacos
 默认账号密码均为nacos
 
 ![image-20230123183344997](http://gd.7n.cdn.wzl1.top/typora/img/image-20230123183344997.png)
+
+# Nacos注册中心
+
+**服务注册到Nacos**
+
+1. 在NocosDemo父工程中添加SpringCloudAlibaba的管理依赖
+
+   ```xml
+           <dependency>
+               <groupId>com.alibaba.cloud</groupId>
+               <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+               <version>2.2.0.RELEASE</version>
+               <type>pom</type>
+               <scope>import</scope>
+           </dependency>
+   ```
+
+2. 添加Nacos的客户端依赖
+   ```xml
+           <dependency>
+               <groupId>com.alibaba.cloud</groupId>
+               <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+           </dependency>
+   ```
+
+   
