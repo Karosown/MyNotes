@@ -62,7 +62,7 @@ mysql
 
 ```bash
 docker exec -it mysql /bin/bash
-mysql -uroot -p
+mysql -uroot -p #mysql -u -p
 ```
 
 ## Nacos
@@ -108,3 +108,4 @@ http://服务器IP:8848/nacos
    ```
 
    
+
