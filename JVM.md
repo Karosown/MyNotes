@@ -288,7 +288,7 @@ Java并不要求常量一定要在编译器才能产生，也就是说并非预�
 
 - 字符串变量拼接的原理是StringBuilder(1.8).append
 
-- 字符串常量拼接的原理是编译器优化
+- 字符串常量拼接的原理是**编译器优化**
 
 - 可以使用intern方法，主动将串池中还没有的字符串对象放入串池
 
@@ -319,13 +319,98 @@ Java并不要求常量一定要在编译器才能产生，也就是说并非预�
 并且不到2%的堆被恢复。当堆很小时，这个特性可以用来防止应用程序长时间运行，而不会有什么进展。若要禁用此选项，
 指定选项-xx：-UseGCOverheadLimit
 
+```bash
+-XX:+PrintStringTavleStatistics #打印字符串表的统计信息
+#打印垃圾回收的详细信息
+-XX:+PrintGcDetails
+-vaerbase:gc
+```
 
+![image-20230215201809922](http://gd.7n.cdn.wzl1.top/typora/img/image-20230215201809922.png)
+
+![image-20230215201904326](http://gd.7n.cdn.wzl1.top/typora/img/image-20230215201904326.png)
+
+类名、方法名也是以字符串常量的形式存储在JVM中，当内存空间不足，内存分配失败时会进行垃圾回收
+
+![image-20230216024912772](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216024912772.png)
+
+###### 调优
+
+**修改哈希桶个数，改变存储、查询时间**
+
+```bash
+-XX:StringTableSize=xxxx #设置StringTable哈希表 桶的个数
+```
+
+**考虑将字符串对象是否入池**
 
 ### 直接内存
 
 直接内存（Direct Memory）并不是虚拟机运行时数据区的一部分，也不是《JVM》规范中定义的内存区域。
 
-在JDK 1.4中新加入了NIO类，引入了一种基于通道（Channel）与缓冲区（Buffer）的I/O方式，可以使用Native函数库直接分配堆外内存，然后通过一个存储在Java堆里面的DirectByteBuffer对象作为这块内存的引用操作，避免了在Java Heap和Native Heap中来回复制数据。
+在JDK 1.4中新加入了**NIO类**，引入了一种**基于通道（Channel）与缓冲区（Buffer）**的I/O方式，可以使用Native函数库直接分配**堆外内存**，然后通过一个存储在Java堆里面的**DirectByteBuffer对象**作为这块内存的引用操作，避免了在Java Heap和Native Heap中**来回复制数据**。
+
+**直接内存属于系统内存**
+
+- 常见于NIO操作、用于数据缓冲区
+- 分配回收成本高，但读写性能强
+- 不受JVM内存回收管理
+
+**传统IO**
+
+<img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230216040231966.png" alt="image-20230216040231966" style="zoom: 50%;" />
+
+**直接内存**
+
+ByteBuffer.allocateDirect(_1Mb); //分配直接内存
+
+![image-20230216040351823](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216040351823.png)
+
+#### 直接内存溢出
+
+![image-20230216040900894](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216040900894.png)
+
+#### 直接内存释放
+
+![image-20230216043702897](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216043702897.png)
+
+![image-20230216043657291](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216043657291.png)
+
+Cleaner （虚引用类型）当前对象被回收时会执行一个回调方法
+
+![image-20230216052204620](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216052204620.png)
+
+> [阿里面试： 说说强引用、软引用、弱引用、虚引用吧 - 腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1632413#:~:text=虚引用，顾名思义,得一个对象实例。)
+>
+> 强：打死都不删除
+>
+> 软：容量不够了再删
+>
+> 弱：有gc就删
+>
+> 虚：随时都可以被删（**设置虚引用的唯一目的，就是在这个对象被回收器回收的时候收到一个系统通知或者后续添加进一步的处理**）
+>
+> ![img](https://ask.qcloudimg.com/http-save/yehe-2520554/9yvnwbzri2.jpeg?imageView2/2/w/1620)
+
+![image-20230216052441677](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216052441677.png)
+
+![image-20230216052423752](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216052423752.png)
+
+clean()方法在后台的RefenceHandler线程中检测虚引用对象，一旦虚引用对象关联的实际对象被回收掉后，就会执行clean方法
+
+**分配和回收原理：![image-20230216053629422](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216053629422.png)**
+
+#### 禁用显示回收对直接内存的影响
+
+```bash
+-XX:+DisableExplicitGC #显示的，禁用System.gc();
+```
+
+被禁用后对直接内存使用回调影响：无法手动进行垃圾回收，导致长时间占用直接内存
+
+解决：
+
+- 手动使用unsafe.fereeMemory 
 
 ## HotSpot虚拟机对象揭秘
 
