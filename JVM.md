@@ -1,3 +1,5 @@
+> 本文原创，内容结合视频 [黑马程序员JVM完整教程，Java虚拟机快速入门，全程干货不拖沓*哔哩哔哩*bilibili](https://www.bilibili.com/video/BV1yE411Z7AP/) 和 周志明 - 《深入理解Java虚拟机》而作，同步发于个人博客：[JVM-内存结构篇 - Karos (wzl1.top)](https://www.wzl1.top/2023/02/jvm-内存结构篇/) 与 腾讯云开发者社区：[JVM-内存结构篇笔记 - 腾讯云开发者社区-腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/2217584)，部分图片来源已添加链接
+
 # JVM
 
 # Java 内存区域与内存溢出异常
@@ -6,7 +8,7 @@
 
 ![image-20230122220140540](http://gd.7n.cdn.wzl1.top/typora/img/image-20230122220140540.png)
 
-### 程序计数器（PCR）
+## 程序计数器（PCR）
 
 ==记录下一条指令的地址==
 
@@ -30,44 +32,44 @@ PCR是一个较小的内存空间，可以看作是当前线程所执行的字�
 
 > [(78条消息) Java本地方法调用_外星喵的博客-CSDN博客_本地方法的调用](https://blog.csdn.net/c15158032319/article/details/117703519)
 
-### Java虚拟机栈
+## Java虚拟机栈
 
 ==线程运行时需要的内存空间==
 
 生命周期与线程相同，描述的是Java方法执行的线程内存模型：每个方法被执行的时候，Java虚拟机都会同步创建一个栈帧用于存储局部变量表、操作数栈、动态连接、方法出口等信息。
 
-<img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214061143920.png" alt="image-20230214061143920" style="zoom: 33%;" /><img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214061329499.png" alt="image-20230214061329499" style="zoom: 33%;" />
+<img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214061143920.png" style="zoom:33%;" /><img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214061329499.png" alt="image-20230214061329499" style="zoom: 33%;" />
 
 >- 垃圾回收是否设计栈内存？
->   不涉及，只涉及堆内存
+>  不涉及，只涉及堆内存
 >
 >- 占内存分配越大越好吗？
 >
->  ```bash
->  -Xss1m #通过-Xss来设置栈内存，Linux/x64、macOs、OracleSolaris/x64 默认为1024KB=1m，Windows会根据虚拟内存影响栈的大小
->  ```
+>```bash
+>-Xss1m #通过-Xss来设置栈内存，Linux/x64、macOs、OracleSolaris/x64 默认为1024KB=1m，Windows会根据虚拟内存影响栈的大小
+>```
 >
->  唯一的好处就是增大方法的递归调用，以及间接调用，明显的坏处就是减少线程数。
+>唯一的好处就是增大方法的递归调用，以及间接调用，明显的坏处就是减少线程数。
 >
 >- 方法内的局部变量是否线程安全？
 >  由于Java虚拟机栈线程隔离，而一个方法的局部变量存放于栈帧中，所以线程安全，如果是共享变量（静态变量），那么线程不安全
 >   <img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214062826308.png" alt="image-20230214062826308" style="zoom: 33%;" /><img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214063026191.png" alt="image-20230214063026191" style="zoom:33%;" />
 >
->  特殊情况：
+>特殊情况：
 >
->  <img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214063346572.png" alt="image-20230214063346572" style="zoom:33%;" />
+><img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214063346572.png" alt="image-20230214063346572" style="zoom:33%;" />
 >
->  **如果方法内局部变量没有逃离方法的作用范围，它是线程安全的**
+>**如果方法内局部变量没有逃离方法的作用范围，它是线程安全的**
 >
->  **如果局部变量引用了对象，并逃离方法的作用范围，需要考虑线程安全问题**
+>**如果局部变量引用了对象，并逃离方法的作用范围，需要考虑线程安全问题**
 
-#### 局部变量表
+### 局部变量表
 
 存放编译器可知的各种JVM基本数类型、对象引用和returnAddress类型(指向了一条字节码指令的地址)，存储空间以局部变量槽(Slot)表示，long和double占2个slot。
 
 表所需的内存空间在编译期间完成分配，当进入一个方法时，这个方法需要在栈帧中分配的局部空间大小完全确定，**在方法运行期间不会改变局部变量表的大小（slot的数量）**
 
-#### 栈内存溢出
+### 栈内存溢出
 
 - 栈帧过多导致栈内存溢出
 
@@ -85,46 +87,46 @@ PCR是一个较小的内存空间，可以看作是当前线程所执行的字�
 
 - 栈帧过大导致栈内存溢出
 
-#### 线程运行诊断
+### 线程运行诊断
 
-- *案例1: cpu占用过多*
+*案例1: cpu占用过多*
 
-  定位：
+定位：
 
-  - 用top命令定位那个进程对cpu的占用过高
+- 用top命令定位那个进程对cpu的占用过高
 
-  - ps H -eo pid,%cpu | grep 进程id
+- ps H -eo pid,%cpu | grep 进程id 
 
-    ​	用ps命令进一步定位是哪一个线程引起的
+  #用ps命令进一步定位是哪一个线程引起的
 
-  - jstack 进程id
+- jstack 进程id
 
-    <img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214163118421.png" alt="image-20230214163118421" style="zoom: 33%;" />
+![img](http://gd.7n.cdn.wzl1.top/typora/img/image-20230214163118421.png)
 
-    >jstack中：
-    >
-    >tid: java内的线程id
-    >
-    >nid: 操作系统级别线程的线程id
-    >
-    >prio: java内定义的线程的优先级
-    >
-    >os_prio:操作系统级别的优先级
-    >
-    >
-    >操作系统中：
-    >
-    >- **pid**: 进程ID。
-    >- **lwp**: 线程ID。在用户态的命令(比如ps)中常用的显示方式。
-    >- **tid**: 线程ID，等于lwp。tid在系统提供的接口函数中更常用，比如syscall(SYS_gettid)和syscall(__NR_gettid)。
-    >- **tgid**: 线程组ID，也就是线程组leader的进程ID，等于pid。
-    >- ------分割线------
-    >- **pgid**: 进程组ID，也就是进程组leader的进程ID。
-    >- **pthread id**: pthread库提供的ID，生效范围不在系统级别，可以忽略。
-    >- **sid**: session ID for the session leader。
-    >- **tpgid**: tty process group ID for the process group leader。
+>jstack中：
+>
+>tid: java内的线程id
+>
+>nid: 操作系统级别线程的线程id
+>
+>prio: java内定义的线程的优先级
+>
+>os_prio:操作系统级别的优先级
+>
+>
+>操作系统中：
+>
+>- **pid**: 进程ID。
+>- **lwp**: 线程ID。在用户态的命令(比如ps)中常用的显示方式。
+>- **tid**: 线程ID，等于lwp。tid在系统提供的接口函数中更常用，比如syscall(SYS_gettid)和syscall(__NR_gettid)。
+>- **tgid**: 线程组ID，也就是线程组leader的进程ID，等于pid。
+>- ------分割线------
+>- **pgid**: 进程组ID，也就是进程组leader的进程ID。
+>- **pthread id**: pthread库提供的ID，生效范围不在系统级别，可以忽略。
+>- **sid**: session ID for the session leader。
+>- **tpgid**: tty process group ID for the process group leader。
 
-  - windows: tasklist
+- windows: tasklist
 
 - 无结果（线程死锁）
 
@@ -132,13 +134,13 @@ PCR是一个较小的内存空间，可以看作是当前线程所执行的字�
 
     ![image-20230214172749657](http://gd.7n.cdn.wzl1.top/typora/img/image-20230214172749657.png)
 
-### 本地方法栈
+## 本地方法栈
 
 本地方法：由C/C++等与操作系统打交道的语言编写
 
 与VM Stack类似，区别在于服务对象不同，NMS为JVM用到的本地方法服务
 
-### Java堆
+## Java堆
 
 Java Heap是虚拟机所管理的内存中最大的一块，是被所有线程共享的一块内存区域，在虚拟机启动时创建。
 
@@ -154,13 +156,13 @@ Java Heap是虚拟机所管理的内存中最大的一块，是被所有线程�
 >* 线程共享，堆中的 对象都需要考虑线程安全问题
 >* 有垃圾回收机制
 
-#### 堆内存溢出
+### 堆内存溢出
 
 <img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214183001646.png" alt="image-20230214183001646" style="zoom: 50%;" /><img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214183050934.png" alt="image-20230214183050934" style="zoom:50%;" />
 
 **成次幂**
 
-#### 堆内存诊断
+### 堆内存诊断
 
 工具>>
 
@@ -168,7 +170,7 @@ Java Heap是虚拟机所管理的内存中最大的一块，是被所有线程�
 
 示例：<img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214194854017.png" alt="image-20230214194854017" style="zoom: 33%;" />
 
-##### JMAP
+#### JMAP
 
 <img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214195449267.png" alt="image-20230214195449267" style="zoom: 33%;" />
 
@@ -176,21 +178,21 @@ Java Heap是虚拟机所管理的内存中最大的一块，是被所有线程�
 jmap -heap PID
 ```
 
-<img src="C:/Users/30398/AppData/Roaming/Typora/typora-user-images/image-20230214195729993.png" alt="image-20230214195729993" style="zoom: 50%;" /><img src="C:/Users/30398/AppData/Roaming/Typora/typora-user-images/image-20230214195847722.png" alt="image-20230214195847722" style="zoom: 50%;" />
+<img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214195729993.png" alt="image-20230214195729993" style="zoom: 50%;" /><img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214195847722.png" alt="image-20230214195847722" style="zoom: 50%;" />
 
 左：堆配置				右：堆内存占用情况
 
-##### JConsole
+#### JConsole
 
 ![image-20230214205736847](http://gd.7n.cdn.wzl1.top/typora/img/image-20230214205736847.png)
 
-##### JvirsualVm
+#### JvirsualVm
 
 ![image-20230215031704078](http://gd.7n.cdn.wzl1.top/typora/img/image-20230215031704078.png)
 
 具有堆转储功能(堆Dump)，截取快照
 
-### 方法区
+## 方法区
 
 ==所有Java虚拟机线程共享的区域==
 
@@ -206,7 +208,7 @@ jmap -heap PID
 
 **线程共享**的内存区域，用于存储已被虚拟机加载的类型模型、final、static、即时编译器编译后的代码缓存
 
-#### 内存溢出
+### 内存溢出
 
 ![image-20230215050458867](http://gd.7n.cdn.wzl1.top/typora/img/image-20230215050458867.png)
 
@@ -230,7 +232,7 @@ Cglib
 - Spring
 - MyBatis
 
-#### 常量池
+### 常量池
 
 Java堆类进行编译时，会产生二进制字节码，包含类基本信息、常量池、类方法定义（包含了虚拟机指令）
 
@@ -246,7 +248,7 @@ Java堆类进行编译时，会产生二进制字节码，包含类基本信息�
 
 - 无参构造
 
-   <img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230215055625190.png" alt="image-20230215055625190" style="zoom: 50%;" />
+  <img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230215055625190.png" alt="image-20230215055625190" style="zoom: 50%;" />
 
 - main方法
 
@@ -256,7 +258,7 @@ Java堆类进行编译时，会产生二进制字节码，包含类基本信息�
 
   ![image-20230215063424268](http://gd.7n.cdn.wzl1.top/typora/img/image-20230215063424268.png)
 
-#### 运行时常量池（Runtime Constant Pool）
+### 运行时常量池（Runtime Constant Pool）
 
 从上面可以看出，常量池其实就是一张表，虚拟机指令根据这张常量表找到要执行的类名、方法铭、参数类型、字面量等信息
 
@@ -274,13 +276,13 @@ Java并不要求常量一定要在编译器才能产生，也就是说并非预�
 >
 > 会在常量池中寻找字符串
 
-##### StringTable
+#### StringTable
 
 ![image-20230215161421366](http://gd.7n.cdn.wzl1.top/typora/img/image-20230215161421366.png)
 
 使用变量相加，由于是变量，所以不会在编译期间优化
 
-###### 特性
+#### 特性
 
 - 常量池中的字符串仅是符号，第一次使用到时才变为对象
 
@@ -306,13 +308,13 @@ Java并不要求常量一定要在编译器才能产生，也就是说并非预�
 
 ![image-20230215071801534](http://gd.7n.cdn.wzl1.top/typora/img/image-20230215071801534.png)
 
-###### 位置
+#### 位置
 
 1.8之前，放在方法去永久代中，而1.7 1.8之后放在堆里面
 
 ![image-20230215181821229](http://gd.7n.cdn.wzl1.top/typora/img/image-20230215181821229.png)
 
-###### 垃圾回收
+#### 垃圾回收
 
 ![image-20230215184329180](http://gd.7n.cdn.wzl1.top/typora/img/image-20230215184329180.png)允许使用限制JVM在gc上的时间比例的策略。
 异常抛出，默认启用此选项，如果超过98%的时间用于垃圾收集，则并行GC将抛出一个outofMemoryError
@@ -334,7 +336,7 @@ Java并不要求常量一定要在编译器才能产生，也就是说并非预�
 
 ![image-20230216024912772](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216024912772.png)
 
-###### 调优
+#### 调优
 
 **修改哈希桶个数，改变存储、查询时间**
 
@@ -344,7 +346,7 @@ Java并不要求常量一定要在编译器才能产生，也就是说并非预�
 
 **考虑将字符串对象是否入池**
 
-### 直接内存
+## 直接内存
 
 直接内存（Direct Memory）并不是虚拟机运行时数据区的一部分，也不是《JVM》规范中定义的内存区域。
 
@@ -366,11 +368,11 @@ ByteBuffer.allocateDirect(_1Mb); //分配直接内存
 
 ![image-20230216040351823](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216040351823.png)
 
-#### 直接内存溢出
+### 直接内存溢出
 
 ![image-20230216040900894](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216040900894.png)
 
-#### 直接内存释放
+### 直接内存释放
 
 ![image-20230216043702897](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216043702897.png)
 
@@ -400,7 +402,7 @@ clean()方法在后台的RefenceHandler线程中检测虚引用对象，一旦�
 
 **分配和回收原理：![image-20230216053629422](http://gd.7n.cdn.wzl1.top/typora/img/image-20230216053629422.png)**
 
-#### 禁用显示回收对直接内存的影响
+### 禁用显示回收对直接内存的影响
 
 ```bash
 -XX:+DisableExplicitGC #显示的，禁用System.gc();
@@ -420,7 +422,7 @@ clean()方法在后台的RefenceHandler线程中检测虚引用对象，一旦�
 
 ![HotSpotCreateObject](http://gd.7n.cdn.wzl1.top/typora/img/HotSpotCreateObject.png?dNow)
 
-#### HotSpot解释器代码片段
+### HotSpot解释器代码片段
 
 ```c++
 // 确保常量池中存放的是已解释的类  
@@ -480,4 +482,3 @@ retry:
   }  
 }  
 ```
-
