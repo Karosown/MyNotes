@@ -2,6 +2,10 @@
 
 # JVM
 
+其他文章：
+
+[jvm参数优化 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/78699741#:~:text=1 对于布尔类型的参数，我们有”%2B”或”-“，然后才设置JVM选项的实际名称。 例如，-XX%3A%2B用于激活选项，而-XX%3A-用于注销选项。,2 对于需要非布尔值的参数，如string或者integer，我们先写参数的名称，后面加上”%3D”，最后赋值。 例如， -XX%3A%3D给赋值。)
+
 # Java 内存区域与内存溢出异常
 
 ## 运行时数据区域
@@ -1017,8 +1021,59 @@ SerialOld：作用于老年代，标记整理
 
 ![image-20230218184152738](http://gd.7n.cdn.wzl1.top/typora/img/image-20230218184152738.png)
 
-### 响应优先
+### 响应优先 —— CMS 并发标记清除收集器
 
 - 多线程
 - 堆内存较大，多核cpu
 - 尽可能让单次stop onworld（stw）的时间的最短
+
+#### 并行和并发
+
+这里本来是OS的内容，在这里再提一下
+
+- 并行
+  ![img](http://c.biancheng.net/uploads/allimg/211207/15153644a-1.gif)
+- 并发（Concurrent）
+  ![img](http://c.biancheng.net/uploads/allimg/211207/1515363219-0.gif)
+- 并行+并发
+  ![img](http://c.biancheng.net/uploads/allimg/211207/15153613F-2.gif)
+
+#### 响应优先
+
+```bash
+-XX:+UseConcMarkSweepGc
+-XX:+UserParNewGC
+#老年代补救
+-XX:SerialOld
+#并行线程数，CPU核数
+-XX:ParallelGCThreads=n
+#并发线程数，一般设置为并行线程数的1/4
+-XX:ConGCThreads=threads
+-XX:CMSInitiatingOccupancyFraction=parent
+-XX:+CMSScavengeBeforeRemark
+```
+
+![image-20230219060040703](http://gd.7n.cdn.wzl1.top/typora/img/image-20230219060040703.png)
+
+- 初始标记：只标记与GCRoots能直接关联到的对象
+- 并发标记：从GCRoots关联对象开始遍历整个图
+- 重新标记：修复并发标记期间，用户程序运作而导致标记产生变动的那部分对象的标记记录
+- 清楚阶段：清楚标记阶段判断的已死亡对象
+
+#### 缺点
+
+- 虽然不会导致用户线程停顿，但是导致应用程序变慢，降低总吞吐量
+
+- CMS默认启动的回收线程数是
+  $$
+  （处理器核心数量+3）/4
+  $$
+  ，也就是说当核心数≥4时，并发回收垃圾手机线程只占用不超过25%的处理器运算资源，并且伴随着核心数增多而下降
+
+- 当核心数＜4时，对用户线程的影响变大
+  扩展：增量式并发收集器
+
+- 无法处理 浮动垃圾 ，有可能出现CMF（并发mode失败）从而导致另一次STW的Full GC产生
+
+### G1
+
