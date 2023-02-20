@@ -57,7 +57,7 @@ PCR是一个较小的内存空间，可以看作是当前线程所执行的字�
 >
 >- 方法内的局部变量是否线程安全？
 >  由于Java虚拟机栈线程隔离，而一个方法的局部变量存放于栈帧中，所以线程安全，如果是共享变量（静态变量），那么线程不安全
->   <img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214062826308.png" alt="image-20230214062826308" style="zoom: 33%;" /><img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214063026191.png" alt="image-20230214063026191" style="zoom:33%;" />
+>  <img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214062826308.png" alt="image-20230214062826308" style="zoom: 33%;" /><img src="http://gd.7n.cdn.wzl1.top/typora/img/image-20230214063026191.png" alt="image-20230214063026191" style="zoom:33%;" />
 >
 >特殊情况：
 >
@@ -720,26 +720,26 @@ E:F:T=8:1:1，其中T默认是已使用内存
 > import java.util.ArrayList;
 > 
 > public class Main {
->     public static int a=5;
->     public static void main(String[] args) throws InterruptedException， IOException {
->         System.in.read();
->         ArrayList<byte[]> bytes=new ArrayList<>();
->         System.out.println("添加对象中");
->         bytes.add(new byte[1024*1024*5]);
->         bytes.forEach(System.out::println);
+>  public static int a=5;
+>  public static void main(String[] args) throws InterruptedException， IOException {
+>      System.in.read();
+>      ArrayList<byte[]> bytes=new ArrayList<>();
+>      System.out.println("添加对象中");
+>      bytes.add(new byte[1024*1024*5]);
+>      bytes.forEach(System.out::println);
 > 
->         System.in.read();
->         bytes.add(new byte[1024*1024*5]);
+>      System.in.read();
+>      bytes.add(new byte[1024*1024*5]);
 > 
->         bytes.forEach(System.out::println);
->         System.in.read();
->         bytes.add(new byte[1024*1024*5]);
->         bytes.forEach(System.out::println);
->         bytes.add(new byte[1024*1024*5]);
+>      bytes.forEach(System.out::println);
+>      System.in.read();
+>      bytes.add(new byte[1024*1024*5]);
+>      bytes.forEach(System.out::println);
+>      bytes.add(new byte[1024*1024*5]);
 > 
->         bytes.forEach(System.out::println);
->         return ;
->     }
+>      bytes.forEach(System.out::println);
+>      return ;
+>  }
 > }
 > ```
 >
@@ -880,22 +880,21 @@ E:F:T=8:1:1，其中T默认是已使用内存
 > import java.util.ArrayList;
 > 
 > public class Main {
->     public static int a=5;
->     public static void main(String[] args) throws InterruptedException， IOException {
->         System.in.read();
->         ArrayList<byte[]> bytes=new ArrayList<>();
->         System.out.println("添加对象中");
->         bytes.add(new byte[1024*1024*5]);
->         bytes.forEach(System.out::println);
+>  public static int a=5;
+>  public static void main(String[] args) throws InterruptedException， IOException {
+>      System.in.read();
+>      ArrayList<byte[]> bytes=new ArrayList<>();
+>      System.out.println("添加对象中");
+>      bytes.add(new byte[1024*1024*5]);
+>      bytes.forEach(System.out::println);
 > 
->         System.in.read();
->         bytes.add(new byte[1024*1024*8]);
->     }
+>      System.in.read();
+>      bytes.add(new byte[1024*1024*8]);
+>  }
 > }
 > ```
 >
 > ```
-> 
 > 添加对象中
 > [B@3b07d329
 > [34.804s][info   ][gc，start       ] GC(4) Pause Young (Allocation Failure)
@@ -1269,3 +1268,4 @@ void oop_field_store(oop* filed,oop new_value){
 ###### G1新生代回收  
 
 ![image-20230220200440069](http://gd.7n.cdn.wzl1.top/typora/img/image-20230220200440069.png)
+
